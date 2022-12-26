@@ -1,0 +1,198 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{            
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            border: 15px black;
+            height: 100vh;
+            background-color: rgb(252, 252, 252);
+        }
+        .square {
+            display: flex;
+            width: 1200px;
+            height: 650px;
+            
+        }
+        .right {
+            height: 650px;
+            width: 600px;
+            background-color: rgb(242, 241, 241);
+        }
+        .left {
+            height: 650px;
+            width: 600px;
+            background-size:cover;
+            }
+            form{
+            text-align: center;
+        }
+        label{
+            text-align: right;
+            color:black;
+            display: inline-block;
+            font-size: 30px;
+            width: 200px;
+            vertical-align: middle;
+            
+        }
+        input {
+            text-align: center;
+            color:black;
+            font-size: medium;
+            width: 30%;
+            vertical-align: middle;
+        }
+        select {
+            display: inline-block;
+            color:black;
+            font-size: medium;
+            text-align: center;
+            width: 30%;
+            vertical-align: middle;
+        }
+        button{
+            border: 10px;
+            margin: 2px 2px 2px 2px;
+            padding: 5px 15px 5px 15px;
+            size: 25%;
+            background-color: green;
+            color: white;
+            display: inline-block;
+            border-radius: 14px;
+            font-size: 25px;
+            cursor: auto;
+        }
+
+        button:hover {
+            background: rgb(76, 76, 243);
+        }
+    </style>
+    <title>Machine Learning</title>
+</head>
+
+<body>
+    <div class="square" >
+        <div class="left"> 
+            <img class="image" src="{{url_for('static', filename='doctor.jpg')}}" style="width: 600px; height: 650px; background-color: white;"/>
+        </div>
+
+        <div class="right"> 
+            <form action="{{url_for('predict')}}" method="post">
+                <br>
+                <h1 style="font-size: 35px;">   Doctor Fee Prediction</h1>
+                <br> 
+
+                <!-- City -->
+                <label for = "city">City : </label>
+                <select class="city" id="city"  name="city" placeholder="Select City" required="required">
+                    <option value="">Choose..</option>
+                    <option value="01">Mumbai</option>
+                    <option value="00">Bangalore</option>
+                    <option value="10">Delhi</option>
+                </select> 
+                <br><br>
+
+                <!-- Speciality_of_Doctor -->
+                <label for = "city">Specialization : </label>
+                <select id="Speciality" name="Speciality_of_Doctor" placeholder="Select Speciality" required="required">
+                    <option value="">Choose..</option>
+                    <option value="1342.449997">Bariatric Surgeon</option>
+                    <option value="1204.825581">Cardiologist</option>
+                    <option value="867.8885458">Chiropractor</option>
+                    <option value="453.0987743">Dentist</option>
+                    <option value="922.3404255">Dermatologist</option>
+                    <option value="1111.764706">Dietitian/Nutritionist</option>
+                    <option value="1096.464646">Gastroenterologist</option>
+                    <option value="887.1461078">Gynecologist/obstetrician</option>
+                    <option value="1250">Neurologist</option>
+                    <option value="1127.303371">Neurosurgeon</option>
+                    <option value="811.5925926">Ophthalmologist</option>
+                    <option value="991.4243243">Orthopedist</option>
+                    <option value="902.7918782">Pediatrician</option>
+                    <option value="1420.357143">Psychiatrist</option>
+                    <option value="678.5227273">Physiotherapist</option>
+                    <option value="1066.144578">Pulmonologist</option>
+                    <option value="1335.294065">Rheumatologist</option>
+                    <option value="1046.022901">Urologist</option>
+                </select>
+                <br><br>
+
+                <!-- degree_type -->
+                <label for = "degree">  Qualification : </label>
+                <select id="degree" name="degree_type" placeholder="degree_type " required="required">
+                    <option value="">Choose..</option>
+                    <option value="00000000">BAMs</option>
+                    <option value="10000000">BDS</option>
+                    <option value="01000000">BHMS</option>
+                    <option value="00100000">BPTH/BPT</option>
+                    <option value="00010000">MA</option>
+                    <option value="00001000">MBBs</option>
+                    <option value="00000100">MD</option>
+                    <option value="00000010">MS</option>
+                    <option value="00000001">Others</option>
+                </select>
+                <br><br>
+
+                <!-- year_of_experience -->
+                <label class="year1" id="Year1" for = "Year" > Experience : </label>
+                <input id="Year" type="text" name="year_of_experience" placeholder="Year.." required="required">  </input>           
+                <br><br>
+
+                <!-- dp_score -->
+                <label id="dp1" for = "dp" > Rating : </label>
+                <input id="dp" type="text" name="dp_score" placeholder="eg: 90%.." required="required">  </input> 
+                <br><br>
+
+                <!-- Number of people votes (npv) -->
+                <label id="npv1" for = "npv" > Upvotes : </label>
+                <input id="npv" type="text" name="npv" placeholder="Number of Votes.." required="required">  </input> 
+                <br><br> <br>
+
+                <!-- predict button -->
+                <button id="sub" type="submit">Predict</button>
+                <br>
+                <!-- output prediction -->
+                <h4 style="font-size: 25px; color: rgb(229, 29, 29);">{{prediction_text}}</h4>
+            </form>
+        </div> 
+    </div> 
+    
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
